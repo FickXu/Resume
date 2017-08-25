@@ -1,7 +1,9 @@
 /**
-* @file
-* @author xuwenlong
-* @date 2017-08-15
+ * @author [Sa]
+ * @email [xwl330596595@163.com]
+ * @create date 2017-08-24 06:22:07
+ * @modify date 2017-08-24 06:22:07
+ * @desc [description]
 */
 <template>
   <div class="user">
@@ -12,7 +14,6 @@
 <style lang="less" rel="stylesheet/less">
   .container {
     .user {
-      /*border: 1px solid #007aff;*/
       background: transparent;
       position: absolute;
       width: 200px;

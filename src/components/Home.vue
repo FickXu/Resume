@@ -58,6 +58,13 @@ export default{
   .container {
     .swiper-container {
       height: 100%;
+      .swiper-wrapper {
+        .swiper-slide {
+          > div {
+            height: 100%;
+          }
+        }
+      }
     }
   }
   /*6p*/
