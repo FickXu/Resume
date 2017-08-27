@@ -3,6 +3,12 @@
 * @author xuwenlong
 * @date 2017-08-15
 */
+@font-face {
+  font-family: 'resume-font';
+  /* project id 396737 */
+  src: url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.eot');
+  src: url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.woff') format('woff'), url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.ttf') format('truetype'), url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.svg#resume-font') format('svg');
+}
 * {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -14,6 +20,10 @@
 * a,
 * input {
   outline: none;
+  text-decoration-line: none;
+}
+* ul li {
+  list-style: none;
 }
 html,
 body {

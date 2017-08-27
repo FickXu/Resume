@@ -7,7 +7,7 @@
 */
 <template>
   <div v-if="getFlag === 'introduction'">
-    <introduction :iptData="getUser"></introduction>
+    <introduction :getUser="getUser" :getWork="getWork"></introduction>
   </div>
   <div v-else-if="getFlag === 'work'">
     <work :work="getWork"></work>

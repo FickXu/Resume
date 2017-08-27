@@ -6,8 +6,7 @@
 <template>
   <div class="container">
     <swiper :options="swiperOption" class="swiper-box">
-      <canvas-bg></canvas-bg>
-      <swiper-slide v-for="item in getSwiper">
+      <swiper-slide v-for="item in getSwiperPage">
         <slideContainer :globalData='getData' :flag='item.flag'></slideContainer>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -16,12 +15,10 @@
 </template>
 <script>
   import slideContainer from './comonentsChild/slideContainer.vue';
-  import CanvasBg from './comonentsChild/canvasBg.vue';
   import store from '../store/index.js';
 export default{
     components: {
-      'slideContainer': slideContainer,
-      'canvas-bg': CanvasBg
+      'slideContainer': slideContainer
     },
     data () {
       return {
@@ -42,6 +39,9 @@ export default{
       },
       getSwiper: function () {
         return this.getData.swiper;
+      },
+      getSwiperPage: function () {
+        return this.getSwiper.page;
       }
     },
     mounted () {

@@ -12,8 +12,11 @@ Vue.use(Vuex);
 const globalData = {
   user: {
     name: '许文龙',
-    sex: 'Man',
     englishName: 'Sa',
+    sex: 'Man',
+    job: '前端工程师',
+    duration: '三年',
+    phone: '13537651102',
     url: 'http://ouptlygn0.bkt.clouddn.com/Robers1-200.jpg',
     email: 'xwl330596595@163.com',
     birth: '1990-03-12',
@@ -178,11 +181,14 @@ const globalData = {
       target: 'changsha'
     }
   },
-  swiper: [{
-    flag: 'introduction'
-  }, {
-    flag: 'work'
-  }]
+  swiper: {
+    allowChangePage: false,
+    page: [{
+      flag: 'introduction'
+    }, {
+      flag: 'work'
+    }]
+  }
 };
 export default {
   globalData
