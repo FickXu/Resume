@@ -49,7 +49,7 @@ export default{
     },
     methods: {
       changePage: function (e) {
-        console.log('changePage:', e, e.activeIndex);
+        console.log('changePage:', e, e.activeIndex, this);
       }
     }
 };

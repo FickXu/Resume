@@ -6,8 +6,8 @@
 @font-face {
   font-family: 'resume-font';
   /* project id 396737 */
-  src: url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.eot');
-  src: url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.woff') format('woff'), url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.ttf') format('truetype'), url('//at.alicdn.com/t/font_396737_3x331nsleib2o6r.svg#resume-font') format('svg');
+  src: url('//at.alicdn.com/t/font_396737_p66ais21pm59izfr.eot');
+  src: url('//at.alicdn.com/t/font_396737_p66ais21pm59izfr.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_396737_p66ais21pm59izfr.woff') format('woff'), url('//at.alicdn.com/t/font_396737_p66ais21pm59izfr.ttf') format('truetype'), url('//at.alicdn.com/t/font_396737_p66ais21pm59izfr.svg#resume-font') format('svg');
 }
 * {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -33,4 +33,118 @@ body {
 #app,
 .container {
   height: 100%;
+}
+.icon {
+  position: relative;
+  flex: auto;
+  padding: 25px;
+  overflow: hidden;
+}
+.icon:hover {
+  text-shadow: 0px 0px 35px #fff;
+  animation: icon-hover 0.5s ease-out forwards;
+}
+@keyframes icon-hover {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+  }
+}
+.icon:hover:before {
+  font-family: 'resume-font';
+  color: #ffffff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+}
+.icon:hover.icon-html:before {
+  content: '\e60b';
+  background: #ff751e;
+}
+.icon:hover.icon-css:before {
+  content: '\e6d7';
+  background: #1266a3;
+}
+.icon:hover.icon-js:before {
+  content: '\e609';
+  background: #9cd4df;
+}
+.icon:hover.icon-h5:before {
+  content: '\e641';
+  background: #e44d26;
+}
+.icon:hover.icon-css3:before {
+  content: '\e636';
+  background: #bd2d30;
+}
+.icon:hover.icon-vue:before {
+  content: '\e673';
+  background: #35495e;
+}
+.icon:hover.icon-less:before {
+  content: '\e60f';
+  background: #1d365d;
+}
+.icon:hover.icon-webpack:before {
+  content: '\e604';
+  background: #84c6e8;
+}
+.icon:hover.icon-node:before {
+  content: '\e622';
+  background: #3d8836;
+}
+.icon:hover.icon-jq:before {
+  content: '\e605';
+  background: #78cff5;
+}
+.icon:hover.icon-zepto:before {
+  content: '\e6c2';
+  background: #c23cff;
+}
+.icon:hover.icon-swiper:before {
+  content: '\e68a';
+  background: #004edd;
+}
+.icon:hover.icon-echart:before {
+  content: '\e653';
+  background: #aa314d;
+}
+.icon:hover.icon-sqlit:before {
+  content: '\e601';
+  background: #0482c4;
+}
+.icon:hover.icon-sui:before {
+  font-size: inherit;
+  content: '\SUI Mobile';
+  background: #591c95;
+}
+.icon:hover.icon-mui:before {
+  content: '\e624';
+  background: #d74b28;
+}
+.icon:hover.icon-webstorm:before {
+  content: '\e6d6';
+  background: #2194dc;
+}
+.icon:hover.icon-sublime:before {
+  content: '\e603';
+  background: #444444;
+}
+.icon:hover.icon-vs-code:before {
+  content: '\e738';
+  background: #373277;
+}
+.icon:hover.icon-github:before {
+  content: '\e628';
+  background: #24292e;
 }

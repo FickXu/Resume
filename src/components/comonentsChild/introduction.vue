@@ -25,10 +25,17 @@
         <img :src="getUser.url" alt="" class="user-photo user-photo-bigger breathe-active" @click="getOverView">
         <input type="text" class="user-input user-input-bigger" :value="getUser.englishName" readonly>
       </div>
-      <div class="skill-info" v-if="isView">
-        <ul>
-          <li v-for="item in getSkill">{{item.tag}}</li>
-        </ul>
+      <div class="skill-info" v-show="isView" v-bind:style="{width: rightDynamicW}">
+          <ul class="skill-nav">
+            <li v-for="(item, index) in getSkillNav">
+              {{item.name}}
+            </li>
+          </ul>
+          <ul class="skill-tag">
+            <li v-for="(item, index) in getSkill" class="icon" :class="item.cls" v-bind:style="{color: item.color}">
+              {{item.tag}}
+            </li>
+          </ul>
       </div>
     </div>
     <span class="transition close-left" @click="closeLeftContainer"></span>
@@ -36,6 +43,7 @@
 </template>
 <script>
   import CanvasBg from './canvasBg.vue';
+  import $ from 'n-zepto';
   export default{
     props: ['getUser', 'getWork'],
     components: {
@@ -45,6 +53,7 @@
       return {
         leftContainer: null,
         rightContainer: null,
+        rightDynamicW: null,
         eleUser: null,
         leftArrow: null,
         isView: false,
@@ -57,11 +66,18 @@
       getSkill () {
         return this.getWork.skill;
       },
+      getSkillNav () {
+        return this.getWork.nav;
+      },
       random () {
       }
     },
     mounted () {
-      // console.log('intro... mounted:', this.random);
+      console.log('intro... mounted:', $);
+      // window.onresize = () => {
+      //   // this.rightDynamicW = document.documentElement.clientWidth + 'px';
+      //   console.log('onresize:', this.rightDynamicW);
+      // };
     },
     methods: {
       getOverView () {
@@ -81,6 +97,8 @@
         this.rightContainer = document.getElementById('right-container');
         this.leftContainer.style.transform = 'translateX(0%)';
         this.rightContainer.style.transform = 'translateX(' + this.leftContainer.offsetWidth + 'px)';
+        // skill-info父容器将来在浏览器可视区域的宽度
+        this.rightDynamicW = this.rightContainer.offsetWidth - this.leftContainer.offsetWidth + 'px';
         // 隐藏头像
         this.eleUser = document.getElementsByClassName('user')[0];
         this.eleUser.style.display = 'none';
@@ -93,9 +111,11 @@
       closeLeftContainer () {
         this.leftContainer.style.transform = 'translateX(-100%)';
         this.rightContainer.style.transform = 'translateX(0%)';
-        this.eleUser.style.display = 'block';
+        this.rightDynamicW = '100%';
         // 隐藏技能标签
         this.isView = false;
+        // 显示头像
+        this.eleUser.style.display = 'block';
         // 左滑箭头隐藏
         this.leftArrow.style = 'none';
       }
@@ -118,7 +138,7 @@
       height: inherit;
       position: relative;
       .transition {
-        transition: all 5s;
+        transition: all 1s;
       }
       .user-photo {
         position: relative;
@@ -158,11 +178,11 @@
         margin: auto;
       }
       #left-container {
-        display: inline-block;
         position: relative;
         background: #eee;
         width: @leftClomunW;
         height: 100%;
+        overflow: hidden;
         transform: translateX(@translateX);
         transition: all .5s ease-out;
         max-width: @leftMaxW;
@@ -250,6 +270,47 @@
             100% {
               box-shadow: 0 0 61 hsla(216, 18%, 16%, 0.2);
             }
+          }
+        }
+        .skill-info {
+          transition: skill-in 1s ease-out;
+          @keyframes skill-in {
+            0% {
+              transform: translateX(-100%)
+            }
+            100% {
+              transform: translateX(0%)
+            }
+          }
+          ul {
+            display: -webkit-flex;
+          }
+          .skill-nav {
+            cursor: pointer;
+            width: 85%;
+            margin: 50px auto auto;
+            height: 50px;
+            line-height: 50px;
+            display: flex;
+            justify-content: space-around;
+            li{
+              flex: 1;
+              text-align: center;
+              position: relative;
+              &:hover {
+                border-bottom: 2px solid #00ADB5;
+                color: #00ADB5;  
+              }
+            }
+          }
+          .skill-tag {
+            cursor: pointer;
+            display: flex;
+            width: 80%;
+            align-items: center;
+            flex-flow: row wrap;
+            margin: 60px auto;
+            text-align: center;
           }
         }
       }
