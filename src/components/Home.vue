@@ -5,8 +5,8 @@
 */
 <template>
   <div class="container">
-    <swiper :options="swiperOption" class="swiper-box">
-      <swiper-slide v-for="item in getSwiperPage">
+    <swiper :options="swiperOption" class="swiper-box" ref='hoemSwiper'>
+      <swiper-slide v-for="(item, index) in getSwiperPage">
         <slideContainer :globalData='getData' :flag='item.flag'></slideContainer>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -22,35 +22,35 @@ export default{
     },
     data () {
       return {
+        swiperIndex: 0,
         swiperOption: {
 //          pagination: '.swiper-pagination', // 导航点
           direction: 'vertical',
           slidesPerView: 1,
           mousewheelControl: true,
           onSlideChangeEnd: swiper => {
-            this.changePage(swiper);
+            // console.log('onSildeChageEnd:', swiper.realIndex);
           }
         }
       };
     },
     computed: {
-      getData: function () {
+      getData () {
         return store.globalData;
       },
-      getSwiper: function () {
+      getSwiper () {
+        return this.$refs.hoemSwiper.swiper;
+      },
+      getSwiperData () {
         return this.getData.swiper;
       },
-      getSwiperPage: function () {
-        return this.getSwiper.page;
+      getSwiperPage () {
+        return this.getSwiperData.page;
       }
     },
     mounted () {
-      console.log('home[mounted]:');
-    },
-    methods: {
-      changePage: function (e) {
-        console.log('changePage:', e, e.activeIndex, this);
-      }
+      this.getSwiperData.op = this.getSwiper;
+      // console.log('home mounted: =============', this.getSwiperData.op.realIndex);
     }
 };
 </script>
@@ -60,6 +60,7 @@ export default{
       height: 100%;
       .swiper-wrapper {
         .swiper-slide {
+          overflow: hidden;
           > div {
             height: 100%;
           }

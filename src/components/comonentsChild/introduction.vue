@@ -10,10 +10,14 @@
     <div id="left-container">
       <img :src="getUser.url" alt="" class="user-photo user-photo-small">
       <input type="text" class="user-input user-input-small" :value="getUser.name" readonly>
+      <span class="birth">{{getUser.birth}}</span>
+      <span class="graduation">{{getUser.graduation}}</span>
       <span class="job">{{getUser.job}}</span>
       <span class="duration">{{getUser.duration}}</span>
-      <span class="email">{{getUser.email}}</span>
-      <span class="phone">{{getUser.phone}}</span>
+      <span class="status">{{getUser.status}}</span>
+      <span class="hopeAddress">{{getUser.hopeAddress}}</span>
+      <!-- <span class="email">{{getUser.email}}</span> -->
+      <!-- <span class="phone">{{getUser.phone}}</span> -->
       <p class="about-me">
         <a href="https://github.com/FickXu" target="_blank"></a>
         <a href="https://segmentfault.com/u/sa_xwl" target="_blank"></a>
@@ -27,7 +31,7 @@
       </div>
       <div class="skill-info" v-show="isView" v-bind:style="{width: rightDynamicW}">
           <ul class="skill-nav">
-            <li v-for="(item, index) in getSkillNav">
+            <li v-for="(item, index) in getSkillNav" @click="toSwiper(index)">
               {{item.name}}
             </li>
           </ul>
@@ -43,9 +47,9 @@
 </template>
 <script>
   import CanvasBg from './canvasBg.vue';
-  import $ from 'n-zepto';
+  // import $ from 'n-zepto';
   export default{
-    props: ['getUser', 'getWork'],
+    props: ['getUser', 'getWork', 'swiperIndex', 'globalData'],
     components: {
       'canvas-bg': CanvasBg
     },
@@ -63,21 +67,20 @@
       };
     },
     computed: {
+      getData () {
+        return this.globalData;
+      },
       getSkill () {
         return this.getWork.skill;
       },
       getSkillNav () {
         return this.getWork.nav;
       },
+      getSwiper () {
+        return this.getData.swiper.op;
+      },
       random () {
       }
-    },
-    mounted () {
-      console.log('intro... mounted:', $);
-      // window.onresize = () => {
-      //   // this.rightDynamicW = document.documentElement.clientWidth + 'px';
-      //   console.log('onresize:', this.rightDynamicW);
-      // };
     },
     methods: {
       getOverView () {
@@ -90,7 +93,6 @@
         */
         // 弹出侧边栏
         this.openLeftContainer();
-        console.log('methods...');
       },
       openLeftContainer () {
         this.leftContainer = document.getElementById('left-container');
@@ -118,6 +120,11 @@
         this.eleUser.style.display = 'block';
         // 左滑箭头隐藏
         this.leftArrow.style = 'none';
+      },
+      toSwiper () {
+        const index = arguments[0] || 0;
+        this.getSwiper.slideTo(index);
+        // console.log('go to index:', index, this.getSwiper);
       }
     }
   };
@@ -171,11 +178,12 @@
         margin: 50px auto;
       }
       .user-input-small {
-        width: 50%;
+        width: 65%;
         height: 30px;
         font-size: 14px;
         line-height: 24px;
         margin: auto;
+        padding-bottom: .375rem;
       }
       #left-container {
         position: relative;
@@ -190,10 +198,17 @@
         > span {
           display: block;
           width: 65%;
-          margin: 20px auto;
+          margin: .625rem auto;
           font-size: 13px;
         }
-        .job, .duration, .email, .phone {
+        .job, 
+        .duration, 
+        .email, 
+        .phone, 
+        .birth, 
+        .graduation,
+        .hopeAddress,
+        .status {
           &:before {
             font-family: @iconFamily;
             font-size: @iconInitSize;
@@ -201,19 +216,45 @@
           }
         }
         .job {
-          margin-top: 60px;
           &:before {
             content: '\e677';
           }
         }
-        .duration:before {
-          content: '\e618';
+        .duration{
+          &:before {
+            content: '\e618';
+          }
         }
-        .email:before {
-          content: '\e612';
+        .email{
+          &:before {
+            content: '\e612';
+          }
         }
-        .phone:before {
-          content: '\e737';
+        .phone{
+          &:before {
+            content: '\e737';
+          }
+        }
+        .birth {
+          margin-top: 3.75rem;
+          &:before {
+            content: '\e629'
+          }
+        }
+        .hopeAddress {
+          &:before {
+            content: '\e65d'
+          }
+        }
+        .status {
+          &:before {
+            content: '\e607'
+          }
+        }
+        .graduation {
+          &:before {
+            content: '\e60c'
+          }
         }
         .about-me {
           width: 65%;
@@ -233,7 +274,7 @@
           }
           > a:last-child {
             &:hover {
-              color: #004e31
+              color: #008051
             }
             &:before {
               content: '\e602';
@@ -258,7 +299,7 @@
           margin-left: -98px;
           /* 动画提示诱导点击 */
           .breathe-active {
-            animation: breathe-in .6s ease-out 3 alternate;
+            animation: breathe-in .6s ease-out 5 alternate;
           }
           @keyframes breathe-in {
             0% {
@@ -297,7 +338,7 @@
               flex: 1;
               text-align: center;
               position: relative;
-              &:hover {
+              &:first-child, &:hover {
                 border-bottom: 2px solid #00ADB5;
                 color: #00ADB5;  
               }
@@ -305,8 +346,9 @@
           }
           .skill-tag {
             cursor: pointer;
-            display: flex;
             width: 80%;
+            display: flex;
+            justify-content: center;
             align-items: center;
             flex-flow: row wrap;
             margin: 60px auto;
@@ -333,6 +375,37 @@
         &:before {
           content: '\e660';
         }
+      }
+    }
+  }
+  @media screen and (min-width: 1320px) {
+    .container .overview #right-container .skill-info{
+      .skill-nav {
+        max-width: 69%;
+      }
+      .skill-tag {
+        margin: 195px auto;
+        max-width: 60%;
+        li {
+          max-width: 320px;
+        }
+      }
+    }
+  }
+  @media screen and(min-height: 900px){
+    .container {
+      .overview {
+        .user-photo-small {
+          margin: 7.5rem auto 1.5625rem;
+        }
+        #right-container .skill-info{
+          .skill-tag {
+            margin: 195px auto;
+            li {
+              max-width: 320px;
+            }
+          }
+        } 
       }
     }
   }

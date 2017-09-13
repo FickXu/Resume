@@ -15,10 +15,13 @@
   },
   "dependencies": {
     "babel-runtime": "^6.25.0",
+    "v-echarts": "^1.0.2",
     "vue": "^2.2.2",
     "vue-awesome-swiper": "^2.6.2",
+    "vue-echarts3": "^1.0.3",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.3.0",
+    "vue2-echarts": "^1.0.1",
     "vuex": "^2.3.1"
   },
   "devDependencies": {

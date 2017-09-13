@@ -30,12 +30,6 @@
       open () {
         this.$router.push('/Home');
       }
-//      testAjax () {
-//        APIS.ajax({
-//          type: 'get',
-//          url: '../../README.md'
-//        });
-//      }
     }
   };
 </script>
