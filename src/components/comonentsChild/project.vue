@@ -436,6 +436,10 @@ and (min-device-height: 480px)
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 3;
               overflow: hidden;
+              &:nth-child(3),
+              &:nth-child(3) + span {
+                -webkit-line-clamp: 2;
+              }
             }
           }
         }

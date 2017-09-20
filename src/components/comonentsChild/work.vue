@@ -210,7 +210,7 @@ and (min-height: 480px)
 {
   .work-container {
     .box-contaniner {
-      flex-flow: row wrap-reverse;
+      flex-direction: column-reverse;
       height: calc(~"100% - 44px");
       padding-top: 0;
       box-sizing: inherit;
@@ -218,7 +218,7 @@ and (min-height: 480px)
         width: 100%;
         height: initial;
         flex-flow: row;
-        align-items: inherit;
+        // align-items: inherit;
         .company-tag {
           flex: 1;
           min-width: initial;
@@ -245,8 +245,30 @@ and (min-height: 480px)
       .right-main {
         width: 100%;
         border-radius: 0;
+        flex: 1;
         h2 {
-          
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+          padding-bottom: .625rem;
+          font-size: .9375rem;
+        }
+        .p-content {
+          font-size: .8125rem;
+        }
+      }
+    }
+  }
+}
+/* iphone6 */
+@media screen 
+and (min-width: 375px) 
+and (min-height: 667px){
+  .work-container {
+    .box-contaniner {
+      .right-main {
+        h2 {
+          margin-top: 2rem;
+          margin-bottom: 1.25rem;
         }
       }
     }

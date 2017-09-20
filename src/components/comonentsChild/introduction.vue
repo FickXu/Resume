@@ -409,4 +409,76 @@
       }
     }
   }
+  /* 移动端 */
+/* iphone4 及以上 */
+@media screen 
+and (min-width: 320px) 
+and (max-width: 750px) 
+and (min-height: 480px) 
+{
+  .container {
+    .overview {
+      .user-photo-small {
+        width: 30%;
+        border: 1px solid #dadada;
+        margin: 2.1875rem auto .625rem;
+      }
+      .user-input-small {
+        width: 20%;
+        padding-bottom: 0;
+      }
+      #left-container {
+        position: relative;
+        background: transparent;
+        transform: translateX(0);
+        width: inherit;
+        max-width: inherit;
+        span {
+          width: 100%;
+          margin-left: 15px;
+          border-bottom: 1px solid #dadada;
+          line-height: 30px;
+        }
+        .birth {
+          margin-top: 1.85rem;
+        }
+        .about-me {
+          position: absolute;
+          margin: 0;
+          right: 4.6875%;
+          bottom: 2.6408%;
+          width: 90%;
+          text-align: right;
+          margin-top: 25%;
+        }
+      }
+      #right-container {
+        .user {
+          display: none;
+        }
+      }
+    }
+  }
+}
+/* iphone 4 */
+@media screen 
+and (min-width: 320px) 
+and (max-height: 480px) {
+   .container .overview #left-container {
+        span {
+          height: 25px;
+          line-height: 25px;
+        }
+   }
+}
+/* iphone 6 , 6 plus*/
+@media screen 
+and (min-width: 375px) 
+and (min-height: 667px) {
+   .container .overview #left-container {
+        .birth {
+          margin-top: 50px;
+        }
+   }
+}
 </style>

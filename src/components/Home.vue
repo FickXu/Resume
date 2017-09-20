@@ -9,7 +9,7 @@
       <swiper-slide v-for="(item, index) in getSwiperPage">
         <slideContainer :globalData='getData' :flag='item.flag'></slideContainer>
       </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
+      <!-- <div class="swiper-pagination" slot="pagination"></div> -->
     </swiper>
   </div>
 </template>
@@ -67,8 +67,5 @@ export default{
         }
       }
     }
-  }
-  /*6p*/
-  @media screen and (min-width: 414px ) and (min-height: 736px) {
   }
 </style>

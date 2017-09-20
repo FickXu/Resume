@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <iframe frameborder="0" width="640" height="498" src="https://v.qq.com/iframe/player.html?vid=b0551z8m1yn&tiny=0&auto=0" allowfullscreen></iframe>
     <transition name="circle-fall">
       <p class="circle" v-if="animationFlag" v-on:click="open">
         <span class="span-rotate">{{ hello }}</span>

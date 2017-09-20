@@ -169,7 +169,7 @@ and (min-device-height: 480px)
           text-indent: .9375rem;
           font-size: .8125rem;
           flex: 1;
-          background-color: hsla(0,0%,100%, .8);
+          background-color: hsla(0,0%,100%, .9);
           margin-bottom: .0625rem;
         }
       }
